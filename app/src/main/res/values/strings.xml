@@ -1,3 +1,26 @@
 <resources>
-    <string name="app_name">NewsApp</string>
+    <string name="app_name">News</string>
+    <string name="country">Country</string>
+    <string name="language">Language</string>
+    <string name="source">Source</string>
+    <string name="search_hint">Search…</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="no_internet_available">No internet available</string>
+    <string name="failed_to_fetch_countries">Failed to fetch countries</string>
+    <string name="failed_to_fetch_languages">Failed to fetch languages</string>
+    <string name="failed_to_fetch_sources">Failed to fetch sources</string>
+    <string name="successfully_deleted_article">Successfully Deleted Article</string>
+    <string name="undo">Undo</string>
+    <string name="article_saved_successfully">Article Saved Successfully</string>
+    <string name="loading">Loading</string>
+    <string name="news">News</string>
+    <string name="filter">Filter</string>
+    <string name="saved">Saved</string>
+    <string name="search">Search</string>
+    <string name="retry">Retry</string>
+    <string name="unknown">Unknown</string>
+    <string name="no_data_available">No data available</string>
+    <string name="no_saved_news">No Saved News</string>
+    <string name="news_not_available">News not available</string>
+    <string name="retry_on_pagination">Failed to load more</string>
 </resources>

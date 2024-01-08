@@ -3,6 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#808080</color>
-    <color name="app_bar">#F2ECF6</color>
-    <color name="app_bar_title">#8D8791</color>
+    <color name="app_bar">#2A2831</color>
+    <color name="app_bar_title">#898591</color>
 </resources>
