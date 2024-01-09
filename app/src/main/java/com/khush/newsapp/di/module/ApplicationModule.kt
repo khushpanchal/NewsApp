@@ -14,6 +14,7 @@ import com.khush.newsapp.data.database.AppDatabaseService
 import com.khush.newsapp.data.database.ArticleDatabase
 import com.khush.news.data.database.DatabaseService
 import com.khush.newsapp.data.network.ApiInterface
+import com.khush.newsapp.data.network.ApiKeyInterceptor
 import com.khush.newsapp.di.ApiKey
 import com.khush.newsapp.di.BaseUrl
 import com.khush.newsapp.di.DbName
@@ -66,9 +67,11 @@ class ApplicationModule {
     fun provideNetworkService(
         @BaseUrl baseUrl: String,
         gsonFactory: GsonConverterFactory,
+        apiKeyInterceptor: ApiKeyInterceptor
     ): ApiInterface {
         val client = OkHttpClient
             .Builder()
+            .addInterceptor(apiKeyInterceptor)
             .build()
 
         return Retrofit
