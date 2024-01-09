@@ -3,6 +3,10 @@ package com.khush.newsapp.ui.viewmodels
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import androidx.paging.filter
 import com.khush.newsapp.common.Const
 import com.khush.newsapp.common.NoInternetException
 import com.khush.newsapp.common.dispatcher.DispatcherProvider
@@ -26,6 +30,7 @@ import javax.inject.Inject
 class NewsViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val newsRepository: NewsRepository,
+    private val pager: Pager<Int, Article>,
     private val logger: Logger,
     private val dispatcherProvider: DispatcherProvider,
     private val networkHelper: NetworkHelper,
@@ -34,6 +39,9 @@ class NewsViewModel @Inject constructor(
     private var pageNum = Const.DEFAULT_PAGE_NUM
     private val _newsItem = MutableStateFlow<UIState<List<Article>>>(UIState.Empty)
     val newsItem: StateFlow<UIState<List<Article>>> = _newsItem
+
+    private val _newsItemPaging = MutableStateFlow<PagingData<Article>>(PagingData.empty())
+    val newsItemPaging: StateFlow<PagingData<Article>> = _newsItemPaging
 
     init {
         fetchNews()
@@ -47,7 +55,22 @@ class NewsViewModel @Inject constructor(
         } else if (checkIfValidArgNews(savedStateHandle.get("source") as? String?)) {
             fetchNewsBySource(savedStateHandle.get("source"))
         } else {
-            fetchNewsByCountry(countryId = Const.DEFAULT_COUNTRY)
+            fetchNewsWithoutFilter()
+        }
+    }
+
+    private fun fetchNewsWithoutFilter() {
+        viewModelScope.launch {
+            pager.flow.cachedIn(viewModelScope)
+                .map {
+                    it.filter { article ->
+                        article.title?.isNotEmpty() == true &&
+                                article.urlToImage?.isNotEmpty() == true
+                    }
+                }
+                .collect {
+                    _newsItemPaging.value = it
+                }
         }
     }
 

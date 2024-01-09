@@ -21,6 +21,13 @@ class NewsRepository @Inject constructor(
     private val network: ApiInterface
 ) {
 
+    suspend fun getNews(pageNumber: Int = DEFAULT_PAGE_NUM): List<Article> {
+        val articles = network.getNews(
+            pageNum = pageNumber
+        ).articles.apiArticleListToArticleList()
+        return articles
+    }
+
     suspend fun getNewsByCountry(
         countryCode: String,
         pageNumber: Int = DEFAULT_PAGE_NUM

@@ -33,11 +33,13 @@ import com.khush.newsapp.common.util.NavigationUtil.navigateSingleTopTo
 import com.khush.newsapp.common.util.NavigationUtil.navigateToCountryScreen
 import com.khush.newsapp.common.util.NavigationUtil.navigateToLanguageScreen
 import com.khush.newsapp.common.util.NavigationUtil.navigateToSourceScreen
+import com.khush.newsapp.common.util.ValidationUtil.checkIfValidArgNews
 import com.khush.newsapp.data.database.entity.Article
 import com.khush.newsapp.ui.screens.ArticleScreen
 import com.khush.newsapp.ui.screens.CountryScreen
 import com.khush.newsapp.ui.screens.LanguageScreen
 import com.khush.newsapp.ui.screens.NewsScreen
+import com.khush.newsapp.ui.screens.NewsScreenPaging
 import com.khush.newsapp.ui.screens.SavedScreen
 import com.khush.newsapp.ui.screens.SearchScreen
 import com.khush.newsapp.ui.screens.SourceScreen
@@ -120,9 +122,21 @@ private fun NewsNavHost(
                 navArgument("language") { type = NavType.StringType },
                 navArgument("source") { type = NavType.StringType })
         ) {
+            val countryCode = it.arguments?.getString("country")
+            val languageCode = it.arguments?.getString("language")
+            val sourceCode = it.arguments?.getString("source")
 
-            NewsScreen { article ->
-                navigateToArticleScreen(article, navController)
+            if (checkIfValidArgNews(countryCode) || checkIfValidArgNews(languageCode) || checkIfValidArgNews(
+                    sourceCode
+                )
+            ) {
+                NewsScreen { article ->
+                    navigateToArticleScreen(article, navController)
+                }
+            } else {
+                NewsScreenPaging { article ->
+                    navigateToArticleScreen(article, navController)
+                }
             }
         }
         composable(route = Route.FilterNews.route) {

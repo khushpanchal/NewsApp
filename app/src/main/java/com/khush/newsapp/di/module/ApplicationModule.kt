@@ -2,6 +2,8 @@ package com.khush.newsapp.di.module
 
 import android.app.Application
 import android.content.Context
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.room.Room
 import com.khush.newsapp.common.Const
 import com.khush.newsapp.common.dispatcher.DefaultDispatcherProvider
@@ -13,11 +15,13 @@ import com.khush.newsapp.common.networkhelper.NetworkHelperImpl
 import com.khush.newsapp.data.database.AppDatabaseService
 import com.khush.newsapp.data.database.ArticleDatabase
 import com.khush.news.data.database.DatabaseService
+import com.khush.newsapp.data.database.entity.Article
 import com.khush.newsapp.data.network.ApiInterface
 import com.khush.newsapp.data.network.ApiKeyInterceptor
 import com.khush.newsapp.di.ApiKey
 import com.khush.newsapp.di.BaseUrl
 import com.khush.newsapp.di.DbName
+import com.khush.newsapp.ui.paging.NewsPagingSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -90,6 +94,20 @@ class ApplicationModule {
     @Provides
     @Singleton
     fun provideDispatcher(): DispatcherProvider = DefaultDispatcherProvider()
+
+    @Provides
+    @Singleton
+    fun providePager(
+        newsPagingSource: NewsPagingSource
+    ): Pager<Int, Article> {
+        return Pager(
+            config = PagingConfig(
+                Const.DEFAULT_QUERY_PAGE_SIZE
+            )
+        ) {
+            newsPagingSource
+        }
+    }
 
     @Provides
     @Singleton
