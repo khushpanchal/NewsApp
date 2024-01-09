@@ -2,6 +2,7 @@ package com.khush.newsapp.ui.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.khush.newsapp.common.Const
 import com.khush.newsapp.common.NoInternetException
 import com.khush.newsapp.common.dispatcher.DispatcherProvider
 import com.khush.newsapp.common.networkhelper.NetworkHelper
@@ -29,7 +30,16 @@ class NewsPagingSource @Inject constructor(
         withContext(dispatcherProvider.io) {
             kotlin.runCatching {
                 if (!networkHelper.isNetworkConnected()) {
-                    throw NoInternetException()
+                    if (page == Const.DEFAULT_PAGE_NUM) {
+                        val articles = newsRepository.getNewsFromDb()
+                        loadResult = LoadResult.Page(
+                            data = articles,
+                            prevKey = page.minus(1),
+                            nextKey = if (articles.isEmpty()) null else page.plus(1)
+                        )
+                    } else {
+                        throw NoInternetException()
+                    }
                 } else {
                     val articles = newsRepository.getNews(page)
                     loadResult = LoadResult.Page(

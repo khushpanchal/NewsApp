@@ -2,7 +2,6 @@ package com.khush.newsapp.common.networkhelper
 
 import android.content.Context
 import android.net.ConnectivityManager
-import com.khush.newsapp.common.networkhelper.NetworkHelper
 
 class NetworkHelperImpl(
     private val context: Context

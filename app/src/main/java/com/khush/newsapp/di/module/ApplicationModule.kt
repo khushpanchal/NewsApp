@@ -14,7 +14,7 @@ import com.khush.newsapp.common.networkhelper.NetworkHelper
 import com.khush.newsapp.common.networkhelper.NetworkHelperImpl
 import com.khush.newsapp.data.database.AppDatabaseService
 import com.khush.newsapp.data.database.ArticleDatabase
-import com.khush.news.data.database.DatabaseService
+import com.khush.newsapp.data.database.DatabaseService
 import com.khush.newsapp.data.database.entity.Article
 import com.khush.newsapp.data.network.ApiInterface
 import com.khush.newsapp.data.network.ApiKeyInterceptor

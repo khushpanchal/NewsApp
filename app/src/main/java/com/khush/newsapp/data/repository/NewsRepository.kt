@@ -4,13 +4,14 @@ import com.khush.newsapp.common.Const
 import com.khush.newsapp.common.Const.DEFAULT_PAGE_NUM
 import com.khush.newsapp.common.util.apiArticleListToArticleList
 import com.khush.newsapp.common.util.apiSourceListToSourceList
-import com.khush.news.data.database.DatabaseService
+import com.khush.newsapp.data.database.DatabaseService
 import com.khush.newsapp.data.database.entity.Article
 import com.khush.newsapp.data.database.entity.Source
 import com.khush.newsapp.data.model.Country
 import com.khush.newsapp.data.model.Language
 import com.khush.newsapp.data.network.ApiInterface
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -25,8 +26,18 @@ class NewsRepository @Inject constructor(
         val articles = network.getNews(
             pageNum = pageNumber
         ).articles.apiArticleListToArticleList()
-        return articles
+        return if (pageNumber == DEFAULT_PAGE_NUM) {
+            database.deleteAllAndInsertAll(articles)
+            database.getAllArticles().first()
+        } else {
+            articles
+        }
     }
+
+    suspend fun getNewsFromDb(): List<Article> {
+        return database.getAllArticles().first()
+    }
+
 
     suspend fun getNewsByCountry(
         countryCode: String,

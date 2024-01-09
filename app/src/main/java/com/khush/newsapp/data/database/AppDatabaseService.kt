@@ -2,7 +2,6 @@ package com.khush.newsapp.data.database
 
 import com.khush.newsapp.common.util.articleToSavedArticleEntity
 import com.khush.newsapp.common.util.savedArticleEntityToArticle
-import com.khush.news.data.database.DatabaseService
 import com.khush.newsapp.data.database.entity.Article
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -31,6 +30,14 @@ class AppDatabaseService(
 
     override suspend fun deleteArticle(article: Article) {
         articleDatabase.getSavedArticleDao().deleteArticle(article.articleToSavedArticleEntity())
+    }
+
+    override fun getAllArticles(): Flow<List<Article>> {
+        return articleDatabase.getArticleDao().getAllArticles()
+    }
+
+    override fun deleteAllAndInsertAll(articles: List<Article>) {
+        articleDatabase.getArticleDao().deleteAllAndInsertAll(articles)
     }
 
 
