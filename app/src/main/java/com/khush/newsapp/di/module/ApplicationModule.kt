@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.room.Room
+import androidx.work.WorkManager
 import com.khush.newsapp.common.Const
 import com.khush.newsapp.common.dispatcher.DefaultDispatcherProvider
 import com.khush.newsapp.common.dispatcher.DispatcherProvider
@@ -121,6 +122,14 @@ class ApplicationModule {
     @Singleton
     fun provideDatabaseService(articleDatabase: ArticleDatabase): DatabaseService {
         return AppDatabaseService(articleDatabase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideWorkManager(
+        @ApplicationContext context: Context
+    ): WorkManager {
+        return WorkManager.getInstance(context)
     }
 
 }

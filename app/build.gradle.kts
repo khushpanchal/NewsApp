@@ -82,6 +82,7 @@ dependencies {
     //Dagger
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-compiler:2.44")
+    implementation("androidx.hilt:hilt-common:1.1.0")
 
     //paging 3
     implementation("androidx.paging:paging-runtime-ktx:3.2.1")
@@ -117,6 +118,8 @@ dependencies {
 
     //WorkManager
     implementation("androidx.work:work-runtime-ktx:2.9.0")
+    implementation("androidx.hilt:hilt-work:1.1.0")
+    kapt("androidx.hilt:hilt-compiler:1.1.0")
 
 
 }

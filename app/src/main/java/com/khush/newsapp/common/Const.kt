@@ -1,6 +1,6 @@
 package com.khush.newsapp.common
 
-import com.khush.news.BuildConfig
+import com.khush.newsapp.BuildConfig
 import com.khush.newsapp.data.model.Country
 import com.khush.newsapp.data.model.Language
 
@@ -15,6 +15,15 @@ object Const {
     const val API_KEY = BuildConfig.API_KEY
     const val BASE_URL = "https://newsapi.org/v2/"
     const val DB_NAME = "article_db"
+
+    //WorkManager and Notification
+    const val UNIQUE_WORK_NAME = "newsAppPeriodicWork"
+    const val MORNING_UPDATE_TIME = 5
+    const val NOTIFICATION_ID = 1
+    const val NOTIFICATION_CHANNEL_ID = "news_channel"
+    const val NOTIFICATION_CHANNEL_NAME = "News"
+    const val NOTIFICATION_CONTENT_TITLE = "News"
+    const val NOTIFICATION_CONTENT_TEXT = "Check out the latest news ..."
 
 
     val countryList: List<Country> = listOf(

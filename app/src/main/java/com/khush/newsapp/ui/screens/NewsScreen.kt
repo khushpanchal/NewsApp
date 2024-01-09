@@ -31,6 +31,7 @@ import com.khush.newsapp.data.database.entity.Article
 import com.khush.newsapp.ui.base.ShowError
 import com.khush.newsapp.ui.base.ShowLoading
 import com.khush.newsapp.ui.base.UIState
+import com.khush.newsapp.ui.components.Article
 import com.khush.newsapp.ui.components.NewsLayout
 import com.khush.newsapp.ui.viewmodels.NewsViewModel
 
