@@ -152,3 +152,11 @@ buildConfigField("String", "API_KEY", "\"<Add your API Key>\"")
 <p align="center">
 <img alt="screenshots"  src="https://github.com/khushpanchal/NewsApp/blob/master/assets/News_app.jpeg">
 </p>
+
+## If this project helps you, show love ❤️ by putting a ⭐ on this project ✌️
+
+## Contribute to the project
+
+Feel free to improve or add features to the project.
+Create an issue or find the pending issue. All pull requests are welcome 😄
+
