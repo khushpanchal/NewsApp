@@ -12,7 +12,7 @@ Welcome to NewsApp, a news application built with MVVM architecture and Jetpack 
 - **Retrofit** for seamless networking
 - **Room DB** for local storage of news articles
 - **Coroutines** and **Flow** for asynchronous programming
-- **StatFlow** for streamlined state management
+- **StateFlow** for streamlined state management
 - **Pagination** to efficiently load and display news articles
 - **Unit tests** and **UI tests** for robust code coverage
 - **Instant search** for quick access to relevant news
