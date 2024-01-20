@@ -160,3 +160,7 @@ buildConfigField("String", "API_KEY", "\"<Add your API Key>\"")
 Feel free to improve or add features to the project.
 Create an issue or find the pending issue. All pull requests are welcome 😄
 
+## Other projects
+I have also created RVTimeTracker - RecyclerView Time Tracker, a finely crafted library designed to accurately calculate viewing time for each item in RecyclerView.
+Check it out - [RVTimeTracker](https://github.com/khushpanchal/RVTimeTracker)
+
